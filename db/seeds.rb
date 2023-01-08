@@ -97,3 +97,37 @@ Event.create!([
     }.squish
   }
 ])
+
+# images = [ 
+#   { event_name: "BugSmash", file_name: "bugsmash.png" },
+#   { event_name: "Hackathon", file_name: "hackathon.png" },
+#   { event_name: "KataCamp", file_name: "katacamp.png" },
+#   { event_name: "Coffee 'n Code", file_name: "coffe-code.png" },
+#   { event_name: "Rails User Group", file_name: "rails-user-group.png" },
+#   { event_name: "Ruby User Group", file_name: "ruby-user-group.png" },
+#   { event_name: "5-Minute Lightning Talks", file_name: "lightning.png" },
+#   { event_name: "Drone Zone", file_name: "drone-zone.png" },
+#   { event_name: "Coding Ninjas", file_name: "ninjas.png" }
+# ]
+# images.each do |image|
+#   e = Event.find_by(name: image[:event_name])
+#   f = File.open(Rails.root.join("app/assets/images/#{image[:file_name]}"))
+#   e.main_image.attach(io: f, filename: image[:file_name])
+# end
+
+images = [ 
+  ["BugSmash", "bugsmash.png"],
+  ["Hackathon", "hackathon.png"],
+  ["KataCamp", "katacamp.png"],
+  ["Coffee 'n Code", "coffe-code.png"],
+  ["Rails User Group", "rails-user-group.png"],
+  ["Ruby User Group", "ruby-user-group.png"],
+  ["5-Minute Lightning Talks", "lightning.png"],
+  ["Drone Zone", "drone-zone.png"],
+  ["Coding Ninjas", "ninjas.png"]
+]
+images.each do |event_name, file_name|
+  event = Event.find_by!(name: event_name)
+  file = File.open(Rails.root.join("app/assets/images/#{file_name}"))
+  event.main_image.attach(io: file, filename: file_name)
+end
